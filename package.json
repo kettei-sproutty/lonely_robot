@@ -1,0 +1,37 @@
+{
+  "name": "lonely_robot",
+  "license": "MIT",
+  "lint-staged": {
+    "*.{md,yml,yaml}": [
+      "prettier --write"
+    ],
+    "*.toml": [
+      "taplo format"
+    ],
+    "*.rs": [
+      "cargo fmt --"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged",
+    "commit-msg": "npx --no -- commitlint --edit ${1}"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.1",
+    "@commitlint/config-conventional": "^17.6.1",
+    "@taplo/cli": "^0.5.2",
+    "lint-staged": "^13.2.2",
+    "prettier": "^2.8.8",
+    "simple-git-hooks": "^2.8.1"
+  },
+  "packageManager": "pnpm@8.3.1",
+  "engines": {
+    "node": "18.x",
+    "pnpm": "8"
+  }
+}
