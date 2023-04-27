@@ -1,6 +1,10 @@
+#![feature(inherent_associated_types)]
+
 use bevy::prelude::*;
 
+mod camera;
 mod globals;
+mod menu;
 mod states;
 
 fn main() {
@@ -18,5 +22,8 @@ fn main() {
                 })
                 .set(ImagePlugin::default_nearest()),
         )
+        .add_state::<states::AppState>()
+        .add_plugin(menu::MenuPlugin)
+        .add_startup_system(camera::setup)
         .run();
 }
